@@ -1,38 +1,167 @@
+:root{
+  --primary-color-income: rgb(95, 111, 160);
+  --primary-color-expence: rgb(160, 95, 105);
+  --primary-color-target: rgb(95, 160, 136);
+  --primary-color-balance: rgb(160, 152, 95);
+}
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* text-align: center; */
+  margin: 20px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+}
+
+/* Income style */
+.income{
+  border: 2px solid var(--primary-color-income);
+  background-color: rgba(95, 111, 160, 0.13);
+  width: 600px;
+}
+.income input{
+    border: 1px solid var(--primary-color-income);
+}
+.income label{
+  color: var(--primary-color-income);
+}
+.income ul{
+  color: var(--primary-color-income);
+}
+.income button{
+  background-color: var(--primary-color-income);
+}
+.income button:hover{
+  color: var(--primary-color-income);
+}
+.income .list{
+  border-left: 2px solid var(--primary-color-income);
+}
+
+/* Expence style */
+.expence{
+  border: 2px solid var(--primary-color-expence);
+  background-color: rgba(160, 95, 105, 0.118);
+  width: 600px;
+}
+.expence input{
+  border: 1px solid var(--primary-color-expence);
+}
+.expence label{
+  color: var(--primary-color-expence);
+}
+.expence ul{
+  color: var(--primary-color-expence);
+}
+.expence button{
+  background-color: var(--primary-color-expence);
+}
+.expence button:hover{
+  color: var(--primary-color-expence);
+}
+.expence .list{
+  border-left: 2px solid var(--primary-color-expence);
+}
+
+/* Target style */
+.target{
+  border: 2px solid var(--primary-color-target);
+  background-color: rgba(95, 160, 136, 0.095);
+  width: 450px;
+}
+.target input{
+  border: 1px solid var(--primary-color-target);
+  border-radius: 10px 0px 0px 10px;
+  width: 150px;
+  margin-left: 5px;
+}
+.target label{
+  color: var(--primary-color-target);
+  flex-direction: row;
+  align-items: center;
+  gap: 0px;
+}
+.target button{
+  background-color: var(--primary-color-target);
+  border-radius: 0px 10px 10px 0px;
+  width: 50px;
+}
+.target button:hover{
+  color: var(--primary-color-target);
+}
+.target form{
+  align-items: normal;
+}
+
+/* Balance style */
+.balance{
+  border: 2px solid var(--primary-color-balance);
+  background-color: rgba(160, 152, 95, 0.173);
+  width: 450px;
+}
+.balance input{
+  border: 1px solid var(--primary-color-balance);
+  border-radius: 10px 0px 0px 10px;
+  width: 150px;
+  margin-left: 5px;
+}
+.balance label{
+  color: var(--primary-color-balance);
+  flex-direction: row;
+  align-items: center;
+  gap: 0px;
+}
+.balance button{
+  background-color: var(--primary-color-balance);
+  border-radius: 0px 10px 10px 0px;
+  width: 60px;
+}
+.balance button:hover{
+  color: var(--primary-color-balance);
+}
+
+/* Global style */
+.container{
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+label{
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-weight: bold;
+  align-items: center;
+}
+input{
+  padding: 10px;
+  width: 200px;
+  height: 20px;
+  border-radius: 15px;
+}
+button{
+  width: 100px;
+  height: 22px;
+  border-style: none;
+  border-radius: 10px;
+  font-weight: bold;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+button:hover{
+  border: 1px solid;
+  font-weight: normal;
+  background-color: white;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1{
+  color:rgb(160, 95, 105);
+  text-align: center;
 }
