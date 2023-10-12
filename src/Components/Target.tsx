@@ -19,10 +19,10 @@ export default function Target() {
     <div className='target container' >
         <form onSubmit={onSubmitHandler}>
             <label>Set target <input type='number' value={userInput.target} onChange={getTarget}></input><button>Reset</button></label>
-            <label>Current saving: {currentSaving} </label>
-            <label>Target: {userTarget.target} </label>
-            <label>Progress: 0% <progress value={0}></progress></label>
-        </form>
+        </form> 
+        <p>Current saving: {currentSaving} </p>
+        <p>Target: {userTarget.target} </p>
+        <p>Progress: 0% <progress value={0}></progress></p>
     </div>
   )
 }

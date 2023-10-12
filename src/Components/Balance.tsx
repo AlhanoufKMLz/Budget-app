@@ -6,8 +6,8 @@ export default function Balance() {
 
     return (
         <div className='balance container'>
+            <p>Current balance: {currentBalance} </p> 
             <form>
-                <label>Current balance: {currentBalance} </label>  
                 <label>Transfer to saving account <input type='number'></input><button>Transfer</button></label>
             </form>
         </div>

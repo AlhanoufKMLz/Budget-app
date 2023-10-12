@@ -20,6 +20,8 @@
   border: 2px solid var(--primary-color-income);
   background-color: rgba(95, 111, 160, 0.13);
   width: 600px;
+  display: flex;
+  gap: 20px;
 }
 .income input{
     border: 1px solid var(--primary-color-income);
@@ -45,6 +47,8 @@
   border: 2px solid var(--primary-color-expence);
   background-color: rgba(160, 95, 105, 0.118);
   width: 600px;
+  display: flex;
+  gap: 20px;
 }
 .expence input{
   border: 1px solid var(--primary-color-expence);
@@ -70,6 +74,8 @@
   border: 2px solid var(--primary-color-target);
   background-color: rgba(95, 160, 136, 0.095);
   width: 450px;
+  display: flex;
+  flex-direction: column;
 }
 .target input{
   border: 1px solid var(--primary-color-target);
@@ -94,12 +100,20 @@
 .target form{
   align-items: normal;
 }
+.target p{
+  color: var(--primary-color-target);
+  font-weight: bold;
+  margin: 5px 0px;
+}
 
 /* Balance style */
 .balance{
   border: 2px solid var(--primary-color-balance);
   background-color: rgba(160, 152, 95, 0.173);
   width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .balance input{
   border: 1px solid var(--primary-color-balance);
@@ -110,7 +124,6 @@
 .balance label{
   color: var(--primary-color-balance);
   flex-direction: row;
-  align-items: center;
   gap: 0px;
 }
 .balance button{
@@ -121,11 +134,13 @@
 .balance button:hover{
   color: var(--primary-color-balance);
 }
+.balance p{
+  color: var(--primary-color-balance);
+  font-weight: bold;
+}
 
 /* Global style */
 .container{
-  display: flex;
-  gap: 20px;
   padding: 20px;
   border-radius: 20px;
 }
