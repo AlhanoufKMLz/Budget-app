@@ -1,28 +1,28 @@
 import React, {useState} from 'react'
+import { TargetProp } from '../Types/types'
 
-export default function Target() {
+export default function Target(prop: TargetProp) {
 
-  const [userInput, setUserInput] = useState({target: 0, current: 0, progress: 0})
-  const [userTarget, setUserTarget] = useState({target: 0, current: 0, progress: 0})
-  const [currentSaving, setCurrentSaving] = useState(0)
+  const [userInput, setUserInput] = useState(0)
 
   function getTarget(event: React.ChangeEvent<HTMLInputElement>){
-    setUserInput({...userInput, target: Number(event.target.value)})
+    setUserInput(Number(event.target.value))
   }
   function onSubmitHandler(event: React.FormEvent<HTMLFormElement>){
       event.preventDefault();
-      setUserTarget({...userTarget, target: userInput.target})
-      setUserInput({...userTarget, target: 0})
+      prop.setUserTarget(userInput)
+      prop.setProgress(prop.currentSaving / prop.userTarget * 100)
+      setUserInput(0)
   }
 
   return (
     <div className='target container' >
         <form onSubmit={onSubmitHandler}>
-            <label>Set target <input type='number' value={userInput.target} onChange={getTarget}></input><button>Reset</button></label>
+            <label>Set target <input type='number' value={userInput} onChange={getTarget}></input><button>Reset</button></label>
         </form> 
-        <p>Current saving: {currentSaving} </p>
-        <p>Target: {userTarget.target} </p>
-        <p>Progress: 0% <progress value={0}></progress></p>
+        <p>Current saving: {prop.currentSaving} </p>
+        <p>Target: {prop.userTarget} </p>
+        <p>Progress: {prop.progress}% <progress value={prop.currentSaving} max={prop.userTarget}></progress></p>
     </div>
   )
 }

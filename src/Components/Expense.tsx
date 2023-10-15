@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
+import { UserInput, ExpenceProp } from '../Types/types'
 
-export default function Expense() {
 
+export default function Expense(prop: ExpenceProp) {
+
+  const [expenceList, setExpenceList] = useState<UserInput[]>([])
   const [userInput, setUserInput] = useState({source: '', amount: 0, date: new Date()})
-  const [expenceList, setExpenceList] = useState<{source: string, amount: number, date: Date}[]>([])
 
   function getExpenceSource(event: React.ChangeEvent<HTMLInputElement>){
       setUserInput({...userInput, source: event.target.value})
@@ -18,13 +20,14 @@ export default function Expense() {
       event.preventDefault();
       setExpenceList([...expenceList, userInput])
       setUserInput({source: '', amount: 0, date: new Date()})
+      prop.setCurrentBalance(prop.currentBalance - userInput.amount)
   }
 
   return (
     <div className='expence container'>
         <form onSubmit={onSubmitHandler}>
             <label>Expence source <input type='text' value={userInput.source} onChange={getExpenceSource}></input></label>
-            <label>Amount of expence <input type='number' value={userInput.amount}  onChange={getExpenceAmount}></input></label>
+            <label>Amount of expence <input type='number' value={userInput.amount} min={0} onChange={getExpenceAmount}></input></label>
             <label>Date of expence <input type='date' onChange={getExpenceDate}></input></label>
             <button>Add expence</button>
         </form>

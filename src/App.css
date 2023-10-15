@@ -177,6 +177,6 @@ button:hover{
   background-color: white;
 }
 h1{
-  color:rgb(160, 95, 105);
+  color: var(--primary-color-target);
   text-align: center;
 }

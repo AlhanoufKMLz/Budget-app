@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
+import { UserInput, IncomeProp } from '../Types/types'
 
-export default function Income() {
+export default function Income(prop: IncomeProp) {
 
+  const [incomeList, setIncomeList] = useState<UserInput[]>([])
   const [userInput, setUserInput] = useState({source: '', amount: 0, date: new Date()})
-  const [incomeList, setIncomeList] = useState<{source: string, amount: number, date: Date}[]>([])
 
   function getIncomeSource(event: React.ChangeEvent<HTMLInputElement>){
       setUserInput({...userInput, source: event.target.value})
@@ -18,13 +19,14 @@ export default function Income() {
       event.preventDefault();
       setIncomeList([...incomeList, userInput])
       setUserInput({source: '', amount: 0, date: new Date()})
+      prop.setCurrentBalance(prop.currentBalance + userInput.amount)
   }
 
   return (
     <div className='income container'>
         <form onSubmit={onSubmitHandler}>
             <label>Income source <input type='text'  value={userInput.source} onChange={getIncomeSource}></input></label>
-            <label>Amount of income <input type='number' value={userInput.amount} onChange={getIncomeAmount}></input></label>
+            <label>Amount of income <input type='number' value={userInput.amount} min={0} onChange={getIncomeAmount}></input></label>
             <label>Date of income <input type='date' onChange={getIncomeDate}></input></label>
             <button>Add income</button>
         </form>
