@@ -4,7 +4,7 @@
   --primary-color-target: rgb(95, 160, 136);
   --primary-color-balance: rgb(160, 152, 95);
 }
-.App {
+.budget-app {
   /* text-align: center; */
   margin: 20px;
   display: flex;
@@ -84,10 +84,9 @@
   margin-left: 5px;
 }
 .target label{
-  color: var(--primary-color-target);
+  display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 0px;
+  color: var(--primary-color-target);
 }
 .target button{
   background-color: var(--primary-color-target);
@@ -122,9 +121,9 @@
   margin-left: 5px;
 }
 .balance label{
-  color: var(--primary-color-balance);
+  display: flex;
   flex-direction: row;
-  gap: 0px;
+  color: var(--primary-color-balance);
 }
 .balance button{
   background-color: var(--primary-color-balance);
@@ -179,4 +178,12 @@ button:hover{
 h1{
   color: var(--primary-color-target);
   text-align: center;
+}
+span{
+  color: red;
+}
+.transfer{
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
 }

@@ -1,24 +1,30 @@
-import React, {useState} from 'react'
-import { TargetProp } from '../Types/types'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod'
+import { TargetProp, targetSchema } from '../Types/types'
 
 export default function Target(prop: TargetProp) {
 
-  const [userInput, setUserInput] = useState(0)
+  const {
+    register, 
+    handleSubmit, 
+    reset,
+    formState: { errors } 
+  } = useForm<{target: number}>({resolver: zodResolver(targetSchema)});
 
-  function getTarget(event: React.ChangeEvent<HTMLInputElement>){
-    setUserInput(Number(event.target.value))
-  }
-  function onSubmitHandler(event: React.FormEvent<HTMLFormElement>){
-      event.preventDefault();
-      prop.setUserTarget(userInput)
-      prop.setProgress(prop.currentSaving / prop.userTarget * 100)
-      setUserInput(0)
+  function onSubmit(data: {target: number}){
+      prop.setUserTarget(data.target)
+      reset()
   }
 
   return (
     <div className='target container' >
-        <form onSubmit={onSubmitHandler}>
-            <label>Set target <input type='number' value={userInput} onChange={getTarget}></input><button>Reset</button></label>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className='transfer'>
+            <label>Set target <input type='number' {...register('target',{valueAsNumber: true})}></input></label>
+            <button>Reset</button>
+          </div>
+          {errors.target && <span> {errors.target.message} </span>}
         </form> 
         <p>Current saving: {prop.currentSaving} </p>
         <p>Target: {prop.userTarget} </p>
