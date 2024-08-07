@@ -57,3 +57,11 @@ If you have a higher skill level and finish the previous requirements before the
 - Peer Review
 
 Happy coding!
+
+# How to run
+```
+npm run dev
+```
+```
+npm run watch
+```
