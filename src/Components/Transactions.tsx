@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { UserInput, schema, TransactionProp } from '../Types/types'
-import { useState } from 'react';
 
 export default function Transactions(prop: TransactionProp) {
 

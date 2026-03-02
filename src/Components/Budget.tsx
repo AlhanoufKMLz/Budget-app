@@ -6,11 +6,14 @@ import Target from './Target';
 import Balance from './Balance';
 import Transactions from './Transactions';
 import { Transaction, UserInput } from '../Types/types';
+import Status from './Status';
 
 export default function Budget() {
 
   const [currentSaving, setCurrentSaving] = useState(0)
   const [currentBalance, setCurrentBalance] = useState(0)
+  const [totalIncome, setTotalIncome] = useState(0)
+  const [totalExpense, setTotalExpense] = useState(0)
   const [userTarget, setUserTarget] = useState(0)
   const [progress, setProgress] = useState(0)
   const [transactionList, setTransactionList] = useState<Transaction[]>([])
@@ -30,6 +33,12 @@ export default function Budget() {
         <h1>Budget Manager</h1>
         <p>Take control of your finances with ease</p>
       </header>
+
+      <Status
+        currentSaving={currentSaving}
+        currentBalance={currentBalance}
+        totalIncome={totalIncome}
+        totalExpense={totalExpense}/>
 
       {/* Target & Transfer Section */}
       <div className="section-grid">
@@ -54,12 +63,16 @@ export default function Budget() {
           currentBalance={currentBalance}
           setCurrentBalance={setCurrentBalance}
           transactionList={transactionList}
-          setTransactionList={setTransactionList} />
+          setTransactionList={setTransactionList} 
+          totalIncome={totalIncome}
+          setTotalIncome={setTotalIncome}/>
         <Expense
           currentBalance={currentBalance}
           setCurrentBalance={setCurrentBalance}
           transactionList={transactionList}
-          setTransactionList={setTransactionList} />
+          setTransactionList={setTransactionList}
+          totalExpense={totalExpense}
+          setTotalExpense={setTotalExpense}/>
       </div>
 
       {/* Transactions List */}
@@ -68,7 +81,6 @@ export default function Budget() {
         setCurrentBalance={setCurrentBalance}
         transactionList={transactionList}
         setTransactionList={setTransactionList} />
-
 
     </div>
   )

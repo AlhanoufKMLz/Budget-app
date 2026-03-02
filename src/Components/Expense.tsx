@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { UserInput, ExpenceProp, schema, Transaction } from '../Types/types'
+import { UserInput, schema, Transaction, ExpenceProp } from '../Types/types'
 
 export default function Expense(prop: ExpenceProp) {
 
@@ -19,6 +19,7 @@ export default function Expense(prop: ExpenceProp) {
     }
 
     prop.setTransactionList([...prop.transactionList, expenseData])
+    prop.setTotalExpense(prop.totalExpense + expenseData.amount)
     prop.setCurrentBalance(prop.currentBalance - data.amount)
     reset()
   }
