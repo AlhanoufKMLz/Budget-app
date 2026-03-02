@@ -6,57 +6,85 @@ import { UserInput, IncomeProp, schema } from '../Types/types'
 export default function Income(prop: IncomeProp) {
 
   const {
-    register, 
-    handleSubmit,  
+    register,
+    handleSubmit,
     reset,
     formState: { errors }
-  } = useForm<UserInput>({resolver: zodResolver(schema)});
+  } = useForm<UserInput>({ resolver: zodResolver(schema) });
 
   const [incomeList, setIncomeList] = useState<UserInput[]>([])
 
-  function onSubmit(data: UserInput){
-      setIncomeList([...incomeList, data])
-      prop.setCurrentBalance(prop.currentBalance + data.amount)
-      reset()
+  function onSubmit(data: UserInput) {
+    setIncomeList([...incomeList, data])
+    prop.setCurrentBalance(prop.currentBalance + data.amount)
+    reset()
   }
-  function deleteHandler(key: number){
+  function deleteHandler(key: number) {
     const newIncomeList = [...incomeList];
     const deleted = newIncomeList.splice(key, 1);
     setIncomeList(newIncomeList);
-    prop.setCurrentBalance( prop.currentBalance - deleted[0].amount)
+    prop.setCurrentBalance(prop.currentBalance - deleted[0].amount)
   }
 
   return (
-    <div className='income container'>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <label>Income source 
-              <input type='text' {...register('source')}/>
-            </label>
-            {errors.source && <span> {errors.source.message} </span>}
+    <div>
 
-            <label>Amount of Income 
-              <input type='number'{...register('amount',{valueAsNumber: true})}/>
-            </label>
-            {errors.amount && <span> {errors.amount.message} </span>}
+      <ul>
+        <h3>Incomes:</h3>
+        {incomeList.map((item, index) => {
+          return (<li key={`income-${index}`}>
+            {item.source}: {item.amount} SAR on {item.date.toDateString()}
+            <button onClick={() => deleteHandler(index)}>Delete</button></li>)
+        }
+        )}
+      </ul>
 
-            <label>Date of Income 
-              <input type='date' {...register('date', {valueAsDate: true})}/>
-            </label>
-            {errors.date && <span> {errors.date.message} </span>}
-
-            <button>Add income</button>
-        </form>
-        <div className='list'> 
-          <ul>
-            <h3>Incomes:</h3>
-              {incomeList.map((item, index)=> {
-                return( <li key={`income-${index}`}>
-                  {item.source}: {item.amount} SAR on {item.date.toDateString()} 
-                  <button onClick={()=> deleteHandler(index)}>Delete</button></li>)
-                }    
-              )}
-          </ul>
+      <div className="card">
+        <div className="card-header">
+          <div className="card-icon income">💵</div>
+          <div>
+            <div className="card-title">Add Income</div>
+            <div className="card-subtitle">Record your earnings</div>
+          </div>
         </div>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <label className="form-label">Income Source</label>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="e.g., Salary, Freelance..."
+              {...register('source')}
+            />
+            {errors.source && <span> {errors.source.message} </span>}
+          </div>
+          <div className="form-row">
+            <div className="form-group">
+              <label className="form-label">Amount</label>
+              <input
+                type="number"
+                className="form-input"
+                placeholder="0.00"
+                {...register('amount', { valueAsNumber: true })}
+              />
+              {errors.amount && <span> {errors.amount.message} </span>}
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Date</label>
+              <input
+                type="date"
+                className="form-input"
+                {...register('date', { valueAsDate: true })}
+              />
+              {errors.date && <span> {errors.date.message} </span>}
+            </div>
+          </div>
+          <button className="btn btn-success full-width">+ Add Income</button>
+        </form>
+      </div>
+
     </div>
-  ) 
+  )
 }
