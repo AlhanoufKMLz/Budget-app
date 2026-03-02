@@ -4,6 +4,8 @@ import Income from './Income';
 import Expense from './Expense';
 import Target from './Target';
 import Balance from './Balance';
+import Transactions from './Transactions';
+import { Transaction, UserInput } from '../Types/types';
 
 export default function Budget() {
 
@@ -11,6 +13,7 @@ export default function Budget() {
   const [currentBalance, setCurrentBalance] = useState(0)
   const [userTarget, setUserTarget] = useState(0)
   const [progress, setProgress] = useState(0)
+  const [transactionList, setTransactionList] = useState<Transaction[]>([])
 
   useMemo(() => {
     if (userTarget > 0) {
@@ -28,6 +31,7 @@ export default function Budget() {
         <p>Take control of your finances with ease</p>
       </header>
 
+      {/* Target & Transfer Section */}
       <div className="section-grid">
         <Target
           currentSaving={currentSaving}
@@ -44,14 +48,28 @@ export default function Budget() {
           setProgress={setProgress} />
       </div>
 
+      {/* Income & Expense Forms */}
       <div className="section-grid">
         <Income
           currentBalance={currentBalance}
-          setCurrentBalance={setCurrentBalance} />
+          setCurrentBalance={setCurrentBalance}
+          transactionList={transactionList}
+          setTransactionList={setTransactionList} />
         <Expense
           currentBalance={currentBalance}
-          setCurrentBalance={setCurrentBalance} />
+          setCurrentBalance={setCurrentBalance}
+          transactionList={transactionList}
+          setTransactionList={setTransactionList} />
       </div>
+
+      {/* Transactions List */}
+      <Transactions
+        currentBalance={currentBalance}
+        setCurrentBalance={setCurrentBalance}
+        transactionList={transactionList}
+        setTransactionList={setTransactionList} />
+
+
     </div>
   )
 }

@@ -2,17 +2,35 @@ import { number, z, ZodType } from 'zod'
 export type UserInput = {
     source: string, 
     amount: number, 
-    date: Date
+    date: Date,
+}
+
+export type Transaction = {
+    source: string, 
+    amount: number, 
+    date: Date,
+    type: 'income' | 'expence'
 }
 
 export type ExpenceProp = {
     currentBalance: number
     setCurrentBalance: React.Dispatch<React.SetStateAction<number>>
+    transactionList: Transaction[]
+    setTransactionList: React.Dispatch<React.SetStateAction<Transaction[]>>
 }
 
 export type IncomeProp = {
     currentBalance: number
     setCurrentBalance: React.Dispatch<React.SetStateAction<number>>
+    transactionList: Transaction[]
+    setTransactionList: React.Dispatch<React.SetStateAction<Transaction[]>>
+}
+
+export type TransactionProp = {
+    currentBalance: number
+    setCurrentBalance: React.Dispatch<React.SetStateAction<number>>
+    transactionList: Transaction[]
+    setTransactionList: React.Dispatch<React.SetStateAction<Transaction[]>>
 }
 
 export type TargetProp = {

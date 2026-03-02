@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { UserInput, ExpenceProp, schema } from '../Types/types'
+import { UserInput, ExpenceProp, schema, Transaction } from '../Types/types'
 
 export default function Expense(prop: ExpenceProp) {
 
@@ -12,35 +12,19 @@ export default function Expense(prop: ExpenceProp) {
     formState: { errors }
   } = useForm<UserInput>({ resolver: zodResolver(schema) });
 
-  const [expenceList, setExpenceList] = useState<UserInput[]>([])
-
   function onSubmit(data: UserInput) {
-    setExpenceList([...expenceList, data])
+    const expenseData: Transaction = {
+      ...data,
+      type: 'expence'
+    }
+
+    prop.setTransactionList([...prop.transactionList, expenseData])
     prop.setCurrentBalance(prop.currentBalance - data.amount)
     reset()
-  }
-  function deleteHandler(key: number) {
-    const newExpenceList = [...expenceList];
-    const deleted = newExpenceList.splice(key, 1);
-    setExpenceList(newExpenceList);
-    prop.setCurrentBalance(prop.currentBalance + deleted[0].amount)
   }
 
   return (
     <div>
-
-      <div className='list'>
-        <ul>
-          <h3>Expences:</h3>
-          {expenceList.map((item, index) => {
-            return (<li key={`income-${index}`}>
-              {item.source}: {item.amount} SAR on {item.date.toDateString()}
-              <button onClick={() => deleteHandler(index)}>Delete</button></li>)
-          }
-          )}
-        </ul>
-      </div>
-
       <div className="card">
         <div className="card-header">
           <div className="card-icon expense">🛒</div>
