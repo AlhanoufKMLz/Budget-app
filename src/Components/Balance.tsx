@@ -27,7 +27,7 @@ export default function Balance(prop: BalanceProp) {
             </div>
             <div className="balance-display">
                 <span className="balance-label">Available to Transfer</span>
-                <span className="balance-value">${prop.currentBalance}</span>
+                <span className="balance-value">{prop.currentBalance} SAR</span>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
